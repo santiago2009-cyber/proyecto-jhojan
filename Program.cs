@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using proyecto_santiago.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("Defaultonnetions");
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DBContex>(Options=> Options.UseNpgsql(connectionString));
+ 
 
 var app = builder.Build();
 
