@@ -2,13 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using proyecto_santiago.Data;
+using proyecto_santiago.implementación;
+using proyecto_santiago.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("Defaultonnetions");
 // Add services to the container.
-builder.Services.AddDbContext<DBContex>(Options=> Options.UseNpgsql(connectionString));
- 
+builder.Services.AddDbContext<DBContex>(Options => Options.UseNpgsql(connectionString));
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -23,7 +27,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapStaticAssets();
 
