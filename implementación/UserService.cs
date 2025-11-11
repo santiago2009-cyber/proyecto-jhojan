@@ -14,18 +14,24 @@ namespace proyecto_santiago.implementación
 
         private readonly DBContex dBContex;
 
-        public UserService(DBContex dBContex)
-        {
-            this.dBContex = dBContex;
-        }
+        public IPawordServicio PasswordService; 
 
-        public void CrearUsuario(usuarioModel1 usuario)
+        public UserService(DBContex dbContext, IPawordServicio pawordServicio)
         {
-            if (usuario != null) ;
+            this.dBContex = dbContext;
+            this.PasswordService = pawordServicio;
+        }
+        
+
+        public async Task CrearUsuario(usuarioModel1 usuario)
+        {
+            if (usuario != null)
             {
+                usuario.Usuario_Contrasena = PasswordService.HashPassword(usuario.Usuario_Contrasena);
                 dBContex.Usuarios.Add(usuario);
+                await dBContex.SaveChangesAsync();
             }
 
-        } 
+        }
     }
 }

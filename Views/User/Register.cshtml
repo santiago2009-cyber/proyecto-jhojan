@@ -1,0 +1,23 @@
+@model proyecto_santiago.Models.usuarioModel1
+
+<h1>Registrarse</h1>
+
+@using (Html.BeginForm("Register","Usuario", FormMethod.Post))
+{
+     <label>Nombre</label>
+     @Html.TextBoxFor( modelo => modelo.Usuario_Nombre)
+     <br />
+     <label>Apellido</label>
+     @Html.TextBoxFor( modelo => modelo.Usuario_Apellidos)
+     <br />
+     <label>Email</label>
+     @Html.TextBoxFor( modelo => modelo.Usuario_Correo)
+     <br />
+     <label>Password></label>
+     @Html.TextBoxFor( modelo => modelo.Usuario_Contrasena)
+     <br />
+     <input type= "submit" value="guardar" />   
+
+     
+
+}

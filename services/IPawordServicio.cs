@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Threading.Tasks;
-using proyecto_santiago.Models;
 
 namespace proyecto_santiago.services
 {
-    public interface IUserService
+    public interface IPawordServicio
     {
-        Task CrearUsuario(usuarioModel1 usuario);
+        String HashPassword(string password);
     }
 }
