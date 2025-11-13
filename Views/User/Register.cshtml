@@ -1,23 +1,31 @@
 @model proyecto_santiago.Models.usuarioModel1
 
-<h1>Registrarse</h1>
-
-@using (Html.BeginForm("Register","Usuario", FormMethod.Post))
-{
-     <label>Nombre</label>
-     @Html.TextBoxFor( modelo => modelo.Usuario_Nombre)
-     <br />
-     <label>Apellido</label>
-     @Html.TextBoxFor( modelo => modelo.Usuario_Apellidos)
-     <br />
-     <label>Email</label>
-     @Html.TextBoxFor( modelo => modelo.Usuario_Correo)
-     <br />
-     <label>Password></label>
-     @Html.TextBoxFor( modelo => modelo.Usuario_Contrasena)
-     <br />
-     <input type= "submit" value="guardar" />   
-
-     
-
-}
+<div class="container text-center w-75">
+    <h1>Registrarse</h1>
+    <form asp-action="Register" asp-controller="User" method="post">
+    <div class="form group">
+       <label for="Usuario_Nombre">Nombre</label>
+       <input type="text"class="form-control" id="Usuario_Nombre"
+       name="Usuario_Nombre" asp-for="Usuario_Nombre" required />
+       <span asp-validation-for="Usuario_Nombre" class="text-danger"></span>
+       </div>
+     <div>
+     <label for="Usuario_Apellidos">Apellido</label> 
+     <input type="text" class="form-control" id="Usuario_Apellidos" name="Usuario_Apellidos"
+      asp-for="Usuario_Apellidos" required />
+      <span asp-validation-for="Usuario_Apellidos"></span>
+      </div>
+<div class="form group">
+       <label for="Usuario_Correo">Correo</label>
+       <input type="text"class="form-control" id="Usuario_Correo"
+       name="Usuario_Correo" asp-for="Usuario_Correo" required />
+       <span asp-validation-for="Usuario_Correo" class="text-danger"></span>
+       </div>
+<div class="form group">
+       <label for="Usuario_Contrasena">contrasena</label>
+       <input type="password"class="form-control" id="Usuario_Contrasena"
+       name="Usuario_Contrasena" asp-for="Usuario_Contrasena" required />
+       <span asp-validation-for="Usuario_Contrasena"></span>
+       </div>
+       <button type=" submit" class="btn btn-primary">Registrar</button>
+</form>

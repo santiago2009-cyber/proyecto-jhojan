@@ -27,22 +27,18 @@ namespace proyecto_santiago.Controllers
         [Route("register")]
         public async Task<IActionResult> Register(usuarioModel1 usuario)
         {
-            if (usuario != null)
+            if (ModelState.IsValid)
             {
-                usuarioService.CrearUsuario(usuario);
-                return Ok("usuario creado");
+                await usuarioService.CrearUsuario(usuario);
+                return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                return BadRequest("Usuario no puede ser null");
-
-
-            }
+            return View(usuario);
         }
+        
         [HttpGet]
         [Route("register")]
 
-        public  IActionResult Register()
+        public IActionResult Register()
         {
             return View();
         }
