@@ -27,7 +27,8 @@ namespace proyecto_santiago.implementación
         {
             if (usuario != null)
             {
-                usuario.Usuario_Contrasena = PasswordService.HashPassword(usuario.Usuario_Contrasena);
+                usuario.Usuario_Contrasena = PasswordService.HashPassword(usuario.Usuario_Contrasena, out string salt);
+                usuario.Usuario_Salt = salt; 
                 dBContex.Usuarios.Add(usuario);
                 await dBContex.SaveChangesAsync();
             }

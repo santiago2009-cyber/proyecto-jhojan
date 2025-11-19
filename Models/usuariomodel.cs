@@ -18,6 +18,7 @@ namespace proyecto_santiago.Models
         [Required(ErrorMessage = "La Contraseña es obligatorio.")]
         [MinLength(6, ErrorMessage ="La Contraseña debe tener al menos 6 caracteres.m")]
         public required string Usuario_Contrasena { get; set; }
+        public  string? Usuario_Salt { get; set; }
     }
 }
 

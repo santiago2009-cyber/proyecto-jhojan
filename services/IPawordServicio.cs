@@ -8,6 +8,6 @@ namespace proyecto_santiago.services
 {
     public interface IPawordServicio
     {
-        String HashPassword(string password);
+        String HashPassword(string password,out string salt);
     }
 }
