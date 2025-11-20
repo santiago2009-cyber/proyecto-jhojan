@@ -10,7 +10,12 @@ namespace proyecto_santiago.implementación
 {
     public class PasswordServicio : IPawordServicio
     {
-        public string HashPassword(string password,  out string salt)
+        public bool Compararcontrasenas(string Contrasena, string ContrasenaBD, string salt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string HashPassword(string password, out string salt)
         {
             String hashedPassword;
             byte[] saltBytes = new byte[128 / 8];
@@ -21,5 +26,11 @@ namespace proyecto_santiago.implementación
             salt = Convert.ToBase64String(saltBytes);
             hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(password: password, salt: saltBytes, prf: KeyDerivationPrf.HMACSHA256, iterationCount: 100000, numBytesRequested: 256 / 8)); return hashedPassword;
         }
+        private string EncryptPassword(string Contrasena, byte[] saltBytes)
+        {
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(password: Contrasena, salt: saltBytes, prf: KeyDerivationPrf.HMACSHA256, iterationCount: 100000, numBytesRequested: 256 / 8)); 
+            return hashedPassword;
+        }
+
     }
 }
