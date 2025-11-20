@@ -12,7 +12,9 @@ namespace proyecto_santiago.implementación
     {
         public bool Compararcontrasenas(string Contrasena, string ContrasenaBD, string salt)
         {
-            throw new NotImplementedException();
+            byte[] SaltBytes =  Convert.FromBase64String(salt);
+            string hashedPasswordtoCheck = EncryptPassword(Contrasena, SaltBytes);
+            return hashedPasswordtoCheck == Contrasena;
         }
 
         public string HashPassword(string password, out string salt)

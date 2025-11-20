@@ -13,7 +13,9 @@ var connectionString = builder.Configuration.GetConnectionString("Defaultonnetio
 
 builder.Services.AddDbContext<DBContex>(Options => Options.UseNpgsql(connectionString));
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IPawordServicio, PasswordServicio>(); 
+builder.Services.AddScoped<IPawordServicio, PasswordServicio>();
+builder.Services.AddScoped<ILoginServicio, LoginServicio>(); 
+
 
 builder.Services.AddControllersWithViews();
 
